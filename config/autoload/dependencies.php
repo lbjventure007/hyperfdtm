@@ -15,6 +15,6 @@ declare(strict_types=1);
 
 return [
     \App\JsonRpc\CalculatorServiceInterface::class => \App\JsonRpc\CalculatorService::class,
-
+    Prometheus\Storage\Adapter::class => Hyperf\Metric\Adapter\Prometheus\RedisStorageFactory::class,
 
 ];
