@@ -84,18 +84,14 @@ class SagaController extends AbstractController
                return $response->withStatus(200);
 
             }
-            $this->logger->error("transOut fail",['fail'=>"a"]);
-
-
-
-
-
+            $this->logger->error("transOut fail gid is ".$request->query("gid",0));
 
        }catch (\Throwable $e) {
            $this->logger->error("transOut fail",['fail'=>$e->getMessage()]);
 
-
        }
+        /*   下面两个执行的效果一样的 */
+        //return $response->withStatus(409); //
         throw new \Exception("error");
     }
 
@@ -113,22 +109,15 @@ class SagaController extends AbstractController
 
             $this->logger->error("transOutCompensate affect:" ,["message"=>$affected]);
             if ($affected == 1) {
-
               return  $response->withStatus(200);
-
             }
 
 
-           return  $response->withStatus(200);
-
         }catch (\Throwable $e) {
             $this->logger->error("transOutCompensate ex",['mss'=>'a1']);
-
-            throw new \Exception("error");
-        } finally {
-
-            return  $response->withStatus(200,'SUCCESS');
         }
+        throw new \Exception("error");
+        //return  $response->withStatus(409);
 
     }
 
@@ -139,19 +128,14 @@ class SagaController extends AbstractController
            $affected = Db::update('UPDATE user set balance = balance+? WHERE id = ?', [2, 2]); // 返回受影响的行数 int
            $this->logger->info("transIn affect:" . $affected);
            if ($affected == 1) {
-
-
                return  $response->withStatus(200);
            }
-
            $this->logger->info("transIn fail",['message'=>"409"]);
            throw new \Exception("ee");
 
        }catch (\Throwable $e) {
            $this->logger->info("transIn fail",['message'=>$e->getMessage()]);
-
            throw new \Exception("ee");
-
        }
 
     }
@@ -163,21 +147,14 @@ class SagaController extends AbstractController
         try {
             $this->logger->info("transInCompensate start:");
             $affected = Db::update('UPDATE user set balance = balance-? WHERE id = ?', [2, 2]); // 返回受影响的行数 int
-
             $this->logger->info("transInCompensate affect:".$affected,["in"=>$affected]);
             if ($affected==1) {
-
                 return     $response->withStatus(200);
-
             }
             throw new \Exception("err");
         } catch (\Throwable $exception) {
-            throw new \Exception("err");
             $this->logger->info("transInCompensate fail",["fail"=>$exception->getMessage()]);
-            $this->logger->info("transInCompensate fail",["fail"=>"a"]);
-            $response->withStatus(409);
-            return ['dtm_result' => 'fail'];
-
+            throw new \Exception("err");
         }
 
     }

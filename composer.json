@@ -14,7 +14,7 @@
     "require": {
         "php": ">=8.0",
         "dtm/dtm-client": "^0.3.5",
-        "hyperf/amqp": "~3.0.0",
+        "hyperf/amqp": "^3.0",
         "hyperf/async-queue": "~3.0.0",
         "hyperf/cache": "~3.0.0",
         "hyperf/circuit-breaker": "^3.0",
@@ -24,7 +24,7 @@
         "hyperf/constants": "~3.0.0",
         "hyperf/database": "~3.0.0",
         "hyperf/db-connection": "~3.0.0",
-        "hyperf/elasticsearch": "~3.0.0",
+        "hyperf/elasticsearch": "^3.0",
         "hyperf/framework": "~3.0.0",
         "hyperf/grpc-client": "~3.0.0",
         "hyperf/grpc-server": "~3.0.0",

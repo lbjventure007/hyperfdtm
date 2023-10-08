@@ -12,6 +12,10 @@ declare(strict_types=1);
 use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+Router::addRoute(['GET', 'POST', 'HEAD'], '/es', 'App\Controller\IndexController@es');
+Router::addRoute(['GET', 'POST', 'HEAD'], '/suggest', 'App\Controller\IndexController@suggest');
+Router::addRoute(['GET', 'POST', 'HEAD'], '/amqp', 'App\Controller\AmqpController@testProducer');
+Router::addRoute(['GET', 'POST', 'HEAD'], '/delay', 'App\Controller\AmqpController@delayProducer');
 
 Router::get('/favicon.ico', function () {
     return '';
