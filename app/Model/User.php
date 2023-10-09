@@ -6,10 +6,13 @@ namespace App\Model;
 
 
 
+use Hyperf\Scout\Searchable;
+
 /**
  */
 class User extends Model
 {
+    use Searchable;
     /**
      * The table associated with the model.
      */
@@ -18,10 +21,22 @@ class User extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = [];
+    protected array $fillable = ["id","name","gender","balance"];
 
     /**
      * The attributes that should be cast to native types.
      */
     protected array $casts = [];
+
+    public function searchableAs(): string
+    {
+        return "user_index";
+    }
+
+    public function toSearchableArray(): array
+    {
+        $arr = $this->toArray();
+
+        return $arr;
+    }
 }
