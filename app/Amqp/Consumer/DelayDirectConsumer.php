@@ -38,7 +38,12 @@ class DelayDirectConsumer extends ConsumerMessage
 
     public function consumeMessage($data, AMQPMessage $message): string
     {
+        var_dump("------------");
         $this->logger->info("delayComsuer",['time'=>date("Y-m-d H:i:s"),"data"=>$data]);
         return Result::ACK;
+    }
+    public function isEnable(): bool
+    {
+        return false;
     }
 }

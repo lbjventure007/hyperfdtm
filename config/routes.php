@@ -16,7 +16,7 @@ Router::addRoute(['GET', 'POST', 'HEAD'], '/es', 'App\Controller\IndexController
 Router::addRoute(['GET', 'POST', 'HEAD'], '/suggest', 'App\Controller\IndexController@suggest');
 Router::addRoute(['GET', 'POST', 'HEAD'], '/amqp', 'App\Controller\AmqpController@testProducer');
 Router::addRoute(['GET', 'POST', 'HEAD'], '/delay', 'App\Controller\AmqpController@delayProducer');
-
+Router::get('/kafka', 'App\Controller\KafkaController@kafka');
 Router::get('/favicon.ico', function () {
     return '';
 });
